@@ -15,16 +15,20 @@ pipeline {
     }
     stages {
         stage('Build') {
-            echo 'Building..'
-            script {
-                def outputFilePath = "Jenkinsfile"
+            steps {
+                echo 'Building..'
+                script {
+                    def outputFilePath = "Jenkinsfile"
+                }
             }
         }
         stage('Deploy') {
-            sh 'printenv'
-            echo '${outputFilePath}'
-//            echo 'Deploying....'
+            steps {
+                echo 'Deploying....'
+                sh 'printenv'
+                echo '${outputFilePath}'
 //            sh 'aws s3 cp ${outputFilePath} s3://rp-bet-prompts-dev-tetiana/social-tournaments/'
+            }
         }
     }
 
