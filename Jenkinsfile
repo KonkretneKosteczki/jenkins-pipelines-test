@@ -26,8 +26,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                echo '${outputFilePath}'
-                sh 'aws s3 cp Jenkinsfile s3://rp-bet-prompts-dev-tetiana/social-tournaments/'
+                echo outputFilePath
+//                sh 'aws s3 cp Jenkinsfile s3://rp-bet-prompts-dev-tetiana/social-tournaments/'
             }
         }
     }
