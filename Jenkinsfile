@@ -8,6 +8,10 @@
 // noinspection GroovyAssignabilityCheck
 
 node {
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
+    }
     stage('Build') {
         echo 'Building..'
         script {
@@ -15,15 +19,9 @@ node {
         }
     }
     stage('Deploy') {
-        environment {
-            AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
-            AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
-        }
-        steps {
-            sh 'printenv'
-            sh 'echo ${outputFilePath}'
+        sh 'printenv'
+        sh 'echo ${outputFilePath}'
 //            echo 'Deploying....'
 //            sh 'aws s3 cp ${outputFilePath} s3://rp-bet-prompts-dev-tetiana/social-tournaments/'
-        }
     }
 }
