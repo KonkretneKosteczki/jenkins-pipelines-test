@@ -7,21 +7,25 @@
 
 // noinspection GroovyAssignabilityCheck
 
-node {
+pipeline {
+    agent any
     environment {
         AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
     }
-    stage('Build') {
-        echo 'Building..'
-        script {
-            def outputFilePath = "Jenkinsfile"
+    stages {
+        stage('Build') {
+            echo 'Building..'
+            script {
+                def outputFilePath = "Jenkinsfile"
+            }
         }
-    }
-    stage('Deploy') {
-        sh 'printenv'
-        sh 'echo ${outputFilePath}'
+        stage('Deploy') {
+            sh 'printenv'
+            echo '${outputFilePath}'
 //            echo 'Deploying....'
 //            sh 'aws s3 cp ${outputFilePath} s3://rp-bet-prompts-dev-tetiana/social-tournaments/'
+        }
     }
+
 }
