@@ -18,10 +18,10 @@ pipeline {
         stage("Build") {
             steps {
                 echo "Building.."
-                outputFilePath = sh(script: "echo Jenkinsfile", returnStdout: true).toString().trim()
-//                script {
+                script {
+                    outputFilePath = sh(script: "echo Jenkinsfile", returnStdout: true).toString().trim()
 //                    outputFilePath = "Jenkinsfile"
-//                }
+                }
             }
         }
         stage("Deploy") {
